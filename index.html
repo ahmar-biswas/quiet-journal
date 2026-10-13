@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#142847">
+  <meta name="description" content="A private, local-first voice journal.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Quiet — Voice Journal</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">q</div>
+    <div><div class="brand">quiet<span>.</span></div><div class="brand-sub">YOUR PRIVATE JOURNAL</div></div>
+    <button id="installBtn" class="icon-btn hidden" aria-label="Install app" title="Install app">⇩</button>
+  </header>
+
+  <main>
+    <section id="homeView">
+      <div class="greeting">
+        <p class="eyebrow" id="todayLabel">YOUR SPACE, YOUR PACE</p>
+        <h1>Let it out.</h1>
+        <p class="muted intro">No perfect words needed. Just speak.</p>
+      </div>
+
+      <section class="record-card" aria-label="Voice recorder">
+        <div class="sound-orbit"><div class="mic-symbol">🎙</div></div>
+        <p id="recordStatus" class="record-status">Your next thought can start here.</p>
+        <div id="timer" class="timer">00:00</div>
+        <div class="record-actions">
+          <button id="recordBtn" class="primary-btn"><span>●</span> Start recording</button>
+          <button id="stopBtn" class="secondary-btn hidden">Stop recording</button>
+        </div>
+        <p class="tiny muted">Audio stays on this device. Microphone permission required.</p>
+      </section>
+
+      <section id="draftPanel" class="panel hidden">
+        <div class="section-head"><div><p class="eyebrow">NEW ENTRY</p><h2>Keep this moment</h2></div></div>
+        <label for="entryTitle">Title <span class="muted">(optional)</span></label>
+        <input id="entryTitle" maxlength="100" placeholder="A thought to remember">
+        <label for="transcript">Transcript</label>
+        <textarea id="transcript" rows="6" placeholder="If speech recognition is supported, your words may appear here. You can also edit or type a note."></textarea>
+        <p id="speechNote" class="tiny muted">Speech-to-text availability depends on your browser and device. It may require internet and is not guaranteed offline.</p>
+        <audio id="draftAudio" controls class="audio hidden"></audio>
+        <div class="button-row">
+          <button id="discardBtn" class="secondary-btn">Discard</button>
+          <button id="saveBtn" class="primary-btn">Save entry</button>
+        </div>
+      </section>
+
+      <section class="entries-section">
+        <div class="section-head">
+          <div><p class="eyebrow">LOOKING BACK</p><h2>Your entries <span id="entryCount" class="count">0</span></h2></div>
+        </div>
+        <input id="searchBox" class="search" type="search" placeholder="Search your journal…">
+        <div id="entriesList" class="entries-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">✳</div><h3>A little space for you.</h3>
+          <p class="muted">Your saved thoughts will live here, on this device.</p>
+        </div>
+      </section>
+    </section>
+
+    <section id="detailView" class="panel hidden">
+      <button id="backBtn" class="text-btn">← All entries</button>
+      <p class="eyebrow" id="detailDate"></p>
+      <h1 id="detailTitle">Entry</h1>
+      <p class="muted tiny" id="detailMeta"></p>
+      <audio id="detailAudio" controls class="audio hidden"></audio>
+      <div id="detailTranscript" class="detail-transcript"></div>
+      <div class="button-row">
+        <button id="editBtn" class="secondary-btn">Edit text</button>
+        <button id="deleteBtn" class="danger-btn">Delete</button>
+      </div>
+    </section>
+
+    <section class="privacy-note">
+      <span class="lock">⌑</span><div><strong>Private by design</strong><p>Entries are stored locally in this browser. There is no account or cloud sync. Clearing browser data or uninstalling may remove entries, so export backups occasionally.</p></div>
+    </section>
+  </main>
+
+  <footer><span>QUIET JOURNAL</span><span id="offlineStatus">LOCAL STORAGE · NO ACCOUNT</span></footer>
+  <div id="toast" role="status" aria-live="polite" class="toast hidden"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
